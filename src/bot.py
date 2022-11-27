@@ -25,7 +25,15 @@ def run():
     @bot.command(help='Check your remaining DALL-E credits.')
     async def credits(context):
         await context.send("You have 11 credits remaining.")
-    
+
+    @bot.event
+    async def on_command_error(context, error):
+        if hasattr(context.command, 'on_error'):
+            return
+
+        if isinstance(error, commands.CommandNotFound):
+            return
+
     TOKEN = os.getenv('DISCORD_TOKEN')
     bot.run(TOKEN)
 
