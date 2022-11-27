@@ -8,6 +8,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 def run():
+
     load_dotenv()
     openai_client = OpenAIClient()
     bot = commands.Bot(command_prefix='!', case_insensitive=True, intents=intents)
@@ -24,7 +25,7 @@ def run():
     
     @bot.command(help='Check your remaining DALL-E credits.')
     async def credits(context):
-        await context.send("You have 11 credits remaining.")
+        await context.send("You have 13 credits remaining.")
 
     @bot.event
     async def on_command_error(context, error):
