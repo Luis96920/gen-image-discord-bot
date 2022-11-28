@@ -1,6 +1,4 @@
 import openai
-import os
-import dotenv
 
 from tenacity import (
     retry,
@@ -12,7 +10,6 @@ from tenacity import (
 
 class OpenAIClient:
     def __init__(self):
-        dotenv.load_dotenv()
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
     @retry(
@@ -23,3 +20,4 @@ class OpenAIClient:
         response = openai.Image.create(prompt=prompt)
         image_url = response['data'][0]['url']
         return image_url
+
