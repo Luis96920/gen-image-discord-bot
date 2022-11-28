@@ -1,7 +1,7 @@
 import openai
 import os
+import dotenv
 
-from dotenv import load_dotenv
 from tenacity import (
     retry,
     stop_after_attempt,
@@ -12,7 +12,7 @@ from tenacity import (
 
 class OpenAIClient:
     def __init__(self):
-        load_dotenv()
+        dotenv.load_dotenv()
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
     @retry(
