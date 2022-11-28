@@ -1,11 +1,10 @@
-import discord
-
+from discord import Intents
 from discord.ext import commands
 
 class DalleBot(commands.Bot):
 
     def __init__(self):
-        intents = discord.Intents.default()
+        intents = Intents.default()
         intents.typing = False
         intents.presences = False
         intents.message_content = True

@@ -1,6 +1,5 @@
-import asyncio
-import dotenv
 import os
+import dotenv
 
 from bot import DalleBot
 
