@@ -26,12 +26,12 @@ The DALL-E Discord Bot is an easy way to generate images from the comfort of you
 
 7. Create a client secret (i.e. API key) and add to the `.env` file. 
 
-8. Add the following redirect URL in the OAuth2 settings: https://discordapp.com/oauth2/authorize?&client_id=<client_id>&scope=bot&permissions=274877910016. The permissions integer allows your bot to read messages, send messages, and send messages in threads. Nothing more.
+8. Add the following redirect URL in the OAuth2 settings: `https://discordapp.com/oauth2/authorize?&client_id=<client_id>&scope=bot&permissions=274877910016`. The permissions integer allows your bot to read messages, send messages, and send messages in threads. Nothing more.
 
 9. Create an admin guild to invite your bot to. This is where you can test and deploy new commands using the sync command. Note that *guild* is the terminology used throughout the developer documentation, whereas *server* is the user-facing terminology.
 
-10. Add the admin guild ID to the `.env` file. You can find this ID by opening Discord in a browser and checking the URL: https://discord.com/channels/**<guild_id>**/<channel_id>
-
+10. Add the admin guild ID to the `.env` file. You can find this ID by opening Discord in a browser and checking the URL: `https://discord.com/channels/**<guild_id>**/<channel_id>`
+   
 11. Build and run with Docker:
 
    ```bash
@@ -56,4 +56,10 @@ Follow all of the above, except you can replace step 12 with:
 
    ```bash
    $ pip3 install -r requirements.txt
+   ```
+   
+3. Run the app:
+
+   ```bash
+   $ python3 main.py
    ```
