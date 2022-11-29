@@ -12,6 +12,6 @@ class Credits(commands.Cog):
     async def credits(self, interaction: discord.Interaction):
         await interaction.response.send_message("You have 10 credits remaining.")
 
-async def setup(bot: commands.bot):
+async def setup(bot: commands.Bot):
     await bot.add_cog(Credits(bot))
 
