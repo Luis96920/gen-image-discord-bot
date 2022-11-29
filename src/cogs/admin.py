@@ -14,7 +14,7 @@ class Admin(commands.Cog):
     @commands.is_owner()
     @commands.guild_only()
     async def sync(self, ctx: commands.Context, spec: Literal["test", "reset", "deploy"]):
-        if ctx.guild.owner_id != int(os.getenv("OWNER_ID")) or ctx.guild.id != int(os.getenv("ADMIN_GUILD_ID")):
+        if ctx.guild.id != int(os.getenv("ADMIN_GUILD_ID")):
             return
 
         # Test commands in the admin guild

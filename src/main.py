@@ -7,7 +7,7 @@ from bot import DalleBot
 def main():
     logging.getLogger().setLevel(logging.INFO)
     dotenv.load_dotenv()
-    token = os.getenv('DISCORD_TOKEN')
+    token = os.getenv('DISCORD_API_KEY')
     bot = DalleBot()
     bot.run(token)
 
