@@ -31,7 +31,7 @@ The DALL-E Discord Bot is an easy way to generate images from the comfort of you
 9. Create an admin guild to invite your bot to. This is where you can test and deploy new commands using the sync command. Note that *guild* is the terminology used throughout the developer documentation, whereas *server* is the user-facing terminology.
 
 10. Add the admin guild ID to the `.env` file. You can find this ID by opening Discord in a browser and checking the URL: `https://discord.com/channels/**<guild_id>**/<channel_id>`
-   
+
 11. Build and run with Docker:
 
    ```bash
