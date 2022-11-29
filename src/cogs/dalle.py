@@ -27,10 +27,10 @@ class Dalle(commands.Cog):
             await interaction.followup.send(image_url)
         except InvalidRequestError as err:
             logging.error(err)
-            await interaction.response.send_message(str(err))
+            await interaction.followup.send(str(err))
         except Exception as e:
             logging.error(e)
-            await interaction.response.send_message("DALL-E is currently unavailable. Please try again in a few minutes.")
+            await interaction.followup.send("DALL-E is currently unavailable. Please try again in a few minutes.")
 
 
 class OpenAIClient:
