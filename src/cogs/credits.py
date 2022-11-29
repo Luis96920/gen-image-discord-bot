@@ -8,7 +8,7 @@ class Credits(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @app_commands.command(description='Check your remaining credits.')
+    @app_commands.command(description="Check your remaining credits.")
     async def credits(self, interaction: discord.Interaction):
         await interaction.response.send_message("You have 10 credits remaining.")
 

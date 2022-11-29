@@ -19,7 +19,7 @@ class Dalle(commands.Cog):
         self.bot = bot
         self.client = OpenAIClient()
 
-    @app_commands.command(description='Generate an image.')
+    @app_commands.command(description="Generate an image.")
     async def generate(self, interaction: discord.Interaction, description: str):
         try:
             await interaction.response.defer()
@@ -43,7 +43,7 @@ class OpenAIClient:
         retry=retry_if_not_exception_type(openai.error.InvalidRequestError))
     def create_image(self, prompt: str):
         response = openai.Image.create(prompt=prompt)
-        image_url = response['data'][0]['url']
+        image_url = response["data"][0]["url"]
         return image_url
 
 

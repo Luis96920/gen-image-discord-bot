@@ -3,8 +3,7 @@ import discord
 import logging
 
 from discord.ext import commands
-from discord.ext.commands import Greedy, Context
-from typing import Literal, Optional
+from typing import Literal
 
 class Admin(commands.Cog):
 
@@ -14,7 +13,7 @@ class Admin(commands.Cog):
     @commands.command(hidden=True)
     @commands.is_owner()
     @commands.guild_only()
-    async def sync(self, ctx: Context, spec: Literal["test", "reset", "deploy"]):
+    async def sync(self, ctx: commands.Context, spec: Literal["test", "reset", "deploy"]):
         if ctx.guild.owner_id != int(os.getenv("OWNER_ID")) or ctx.guild.id != int(os.getenv("ADMIN_GUILD_ID")):
             return
 
