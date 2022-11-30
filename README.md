@@ -2,6 +2,9 @@
 
 The DALL-E Discord Bot is an easy way to generate images from the comfort of your Discord server.
 
+![dalle-bot-demo](https://user-images.githubusercontent.com/91042401/204699963-12629229-1851-456a-8adc-2894b9cd10af.gif)
+
+
 ## Setup
 
 1. Download Python 3 and Docker.
