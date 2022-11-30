@@ -19,18 +19,19 @@ class Dalle(commands.Cog):
         self.bot = bot
         self.client = OpenAIClient()
 
-    @app_commands.command(description="Generate an image.")
-    async def generate(self, interaction: discord.Interaction, description: str):
+    @commands.hybrid_command(description="Generate an image.")
+    @app_commands.describe(prompt="Prompt provided to the image generation model.")
+    async def generate(self, context: commands.Context, prompt: str):
         try:
-            await interaction.response.defer()
-            image_url = self.client.create_image(description)
-            await interaction.followup.send(image_url)
+            await context.defer()
+            image_url = self.client.create_image(prompt)
+            await context.send(image_url)
         except InvalidRequestError as err:
             logging.error(err)
-            await interaction.followup.send(str(err))
+            await context.send(str(err))
         except Exception as e:
             logging.error(e)
-            await interaction.followup.send("DALL-E is currently unavailable. Please try again in a few minutes.")
+            await context.send("DALL-E is currently unavailable. Please try again in a few minutes.")
 
 
 class OpenAIClient:
