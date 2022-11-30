@@ -34,14 +34,14 @@ The DALL-E Discord Bot is an easy way to generate images from the comfort of you
 
 11. Build and run with Docker:
 
-   ```bash
-   $ docker build . -t <image>
-   $ docker run <image>
-   ```
+      ```bash
+      $ docker build . -t <image>
+      $ docker run <image>
+      ```
 
 12. Add your bot to any Discord guild. Generate an image with the /generate command.
 
-## Docker Free Setup
+## Dockerless Setup
 
 Follow all of the above, except you can replace step 12 with:
 
