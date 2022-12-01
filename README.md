@@ -46,7 +46,7 @@ The DALL-E Discord Bot is an easy way to generate images from the comfort of you
 
 ## Dockerless Setup
 
-Follow all of the above, except you can replace step 12 with:
+Follow all of the above, except you can replace step 11 with:
 
 1. Create a new virtual environment:
 
