@@ -35,7 +35,7 @@ env:
   ECR_REPOSITORY: dalle-discord-bot
   ECS_SERVICE: dalle-discord-bot
   ECS_CLUSTER: setsuna
-  ECS_TASK_DEFINITION: ./task-definition.json
+  ECS_TASK_DEFINITION: .github/workflows/task-definition.json
   CONTAINER_NAME: dalle-discord-bot
 
 permissions:
