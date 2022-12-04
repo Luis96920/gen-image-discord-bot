@@ -74,8 +74,6 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        echo ecr_registry $ECR_REGISTRY
-        echo image_tag $IMAGE_TAG
         # Build a docker container and push it to ECR so that it can be deployed to ECS.
         DOCKER_BUILDKIT=1 docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --platform linux/arm/v8 .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
