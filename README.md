@@ -1,4 +1,4 @@
-# OpenAI DALL-E Discord Bot
+# DALL-E Discord Bot
 
 The DALL-E Discord Bot is an easy way to generate images from the comfort of your Discord server.
 
