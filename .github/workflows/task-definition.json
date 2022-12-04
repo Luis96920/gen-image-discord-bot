@@ -1,5 +1,4 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-2:947174266332:task-definition/dalle-discord-bot:2",
     "containerDefinitions": [
         {
             "name": "dalle-discord-bot",
@@ -12,26 +11,10 @@
     "family": "dalle-discord-bot",
     "taskRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
-    "revision": 2,
-    "status": "ACTIVE",
-    "requiresAttributes": [
-        {
-            "name": "com.amazonaws.ecs.capability.task-iam-role"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-        }
-    ],
     "placementConstraints": [],
-    "compatibilities": [
-        "EXTERNAL",
-        "EC2"
-    ],
     "requiresCompatibilities": [
         "EC2"
     ],
-    "registeredAt": "2022-11-27T04:40:10.811Z",
-    "registeredBy": "arn:aws:iam::947174266332:root",
     "tags": [
         {
             "key": "ecs:taskDefinition:createdFrom",
