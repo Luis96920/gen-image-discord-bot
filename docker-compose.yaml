@@ -2,9 +2,10 @@ services:
   bot-service: 
     image: sdeastcott/dalle-discord-bot
     build: ./bot-service
-    ports:
-      - 8080:8080
   voucher-service:
     image: sdeastcott/voucher-service
     build: ./voucher-service
-
+    ports:
+      - 8080:8080
+    expose:
+      - 8081
