@@ -1,4 +1,4 @@
-FROM arm64v8/python:3.10.8-slim-bullseye
+FROM arm64v8/python:3.11.1-slim-bullseye
 
 WORKDIR /app
 COPY requirements.txt .
