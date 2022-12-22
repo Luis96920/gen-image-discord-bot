@@ -1,8 +1,9 @@
 import uuid
-from flask import Flask, request
 import db
 
 from enum import Enum
+from flask import Flask, request, make_response
+from waitress import serve
 
 app = Flask(__name__)
 
@@ -32,7 +33,6 @@ def create_voucher():
     db.create_voucher(voucher_id, credits) 
     return {"voucher_id": voucher_id}, 201
 
-
 @app.patch("/vouchers/<voucher_id>")
 def update_voucher(voucher_id):
     request_json = request.get_json()
@@ -61,4 +61,8 @@ def update_voucher(voucher_id):
     else:
         return {"error": "Unknown type. Valid options are REDEEM_VOUCHER or UPDATE_CREDITS."}, 422
 
+
+if __name__ == '__main__':
+    db.init()
+    serve(app, host='0.0.0.0', port=8080)
 

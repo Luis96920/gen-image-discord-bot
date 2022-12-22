@@ -1,5 +1,5 @@
 from discord.ext import commands
-import voucher_api as vs
+from . import voucher_service_client as vsc
 
 class Credits(commands.Cog):
 
@@ -8,8 +8,11 @@ class Credits(commands.Cog):
 
     @commands.hybrid_command(description="Check your remaining credits.")
     async def credits(self, context: commands.Context):
-        vs.get_vouchers("123")
-        await context.send("You have 7 credits remaining.")
+        print(context.author.id)
+        vouchers = vsc.get_vouchers(context.author.id)
+        print(vouchers)
+        credits = vouchers[0]["credits"]
+        await context.send(f"You have {credits} credits remaining.")
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Credits(bot))

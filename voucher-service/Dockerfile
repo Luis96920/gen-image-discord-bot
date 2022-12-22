@@ -4,6 +4,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
 COPY . .
-ENV FLASK_APP=src/app.py
+WORKDIR /app/src
 
-CMD ["flask", "run"]
+CMD ["python3", "app.py"]
