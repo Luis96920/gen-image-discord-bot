@@ -1,5 +1,5 @@
-import sqlite3
 import json
+import sqlite3
 
 def init():
     connection = sqlite3.connect("database.db")
@@ -50,11 +50,19 @@ def get_vouchers(person_id):
        
         return response
 
-def update_credits(voucher_id, count):
+def add_credits(voucher_id, count):
     with _get_db_connection() as conn:
         conn.execute(f"""
             UPDATE voucher
             SET credits = credits + {count}
+            WHERE voucher_id=="{voucher_id}"
+        """)
+
+def subtract_credits(voucher_id, count):
+    with _get_db_connection() as conn:
+        conn.execute(f"""
+            UPDATE voucher
+            SET credits = credits - {count}
             WHERE voucher_id=="{voucher_id}"
         """)
 

@@ -1,7 +1,6 @@
 import uuid
 import db
 
-from enum import Enum
 from flask import Flask, request, make_response
 from waitress import serve
 
@@ -37,21 +36,27 @@ def create_voucher():
 def update_voucher(voucher_id):
     request_json = request.get_json()
 
-    if "type" not in request_json:
-        return {"error": "Missing required field: type"}, 400
+    if "request_type" not in request_json:
+        return {"error": "Missing required field: request_type"}, 400
 
-    type = request_json["type"]
+    request_type = request_json["request_type"]
     credits = request_json.get("credits", None)
     person_id = request_json.get("person_id", None)
 
-    if type == "UPDATE_CREDITS":
+    if request_type == "ADD_CREDITS":
         if not credits:
             return {"error": "Missing required field: credits"}, 400
         else:
-            db.update_credits(voucher_id, credits)
+            db.add_credits(voucher_id, credits)
             return '', 200
 
-    elif type == "REDEEM_VOUCHER":
+    elif request_type == "SUBTRACT_CREDITS":
+        if not credits:
+            return {"error": "Missing required field: credits"}, 400
+        else:
+            db.subtract_credits(voucher_id, credits)
+
+    elif request_type == "REDEEM_VOUCHER":
         if not person_id:
             return {"error": "Missing required field: person_id"}, 400
         else:
@@ -59,7 +64,7 @@ def update_voucher(voucher_id):
             return '', 200
 
     else:
-        return {"error": "Unknown type. Valid options are REDEEM_VOUCHER or UPDATE_CREDITS."}, 422
+        return {"error": "Unknown request type. Valid options are REDEEM_VOUCHER or SUBTRACT_CREDITS."}, 422
 
 
 if __name__ == '__main__':
