@@ -3,20 +3,28 @@
         {
             "name": "dalle-discord-bot",
             "image": "sdeastcott/dalle-discord-bot",
-            "hostPort": 8081,
-            "containerPort": 8081,
             "cpu": 0,
             "memory": 200,
-            "essential": true
+            "essential": true,
+            "portMappings": [
+              {
+                "hostPort": 8081,
+                "containerPort": 8081
+              }
+            ]
         },
         {
             "name": "voucher-service",
             "image": "sdeastcott/voucher-service",
-            "hostPort": 8080,
-            "containerPort": 8080,
             "cpu": 0,
             "memory": 200,
-            "essential": true
+            "essential": true,
+            "portMappings": [
+              {
+                "hostPort": 8080,
+                "containerPort": 8080
+              }
+            ]
         }
     ],
     "family": "dalle-discord-bot",
