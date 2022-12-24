@@ -4,14 +4,14 @@
             "name": "dalle-discord-bot",
             "image": "sdeastcott/dalle-discord-bot",
             "cpu": 0,
-            "memory": 150,
+            "memory": 200,
             "essential": true
         },
         {
             "name": "voucher-service",
             "image": "sdeastcott/voucher-service",
             "cpu": 0,
-            "memory": 100,
+            "memory": 200,
             "essential": true
         }
     ],
