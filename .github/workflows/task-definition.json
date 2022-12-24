@@ -9,7 +9,7 @@
         },
         {
             "name": "voucher-service",
-            "image:": "sdeastcott/voucher-service",
+            "image": "sdeastcott/voucher-service",
             "cpu": 0,
             "memory": 200,
             "essential": true
