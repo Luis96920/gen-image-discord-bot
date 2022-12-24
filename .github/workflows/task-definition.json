@@ -28,6 +28,7 @@
         }
     ],
     "family": "dalle-discord-bot",
+    "networkMode": "awsvpc",
     "taskRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
     "placementConstraints": [],
