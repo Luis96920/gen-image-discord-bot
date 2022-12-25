@@ -6,6 +6,9 @@
             "cpu": 0,
             "memory": 200,
             "essential": true,
+            "links": [
+              "voucher-service"
+            ],
             "portMappings": [
               {
                 "hostPort": 8081,
