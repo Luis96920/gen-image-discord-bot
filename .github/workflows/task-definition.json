@@ -9,7 +9,8 @@
             "portMappings": [
               {
                 "hostPort": 8081,
-                "containerPort": 8081
+                "containerPort": 8081,
+                "protocol": "tcp"
               }
             ]
         },
@@ -22,13 +23,14 @@
             "portMappings": [
               {
                 "hostPort": 8080,
-                "containerPort": 8080
+                "containerPort": 8080,
+                "protocol": "tcp"
               }
             ]
         }
     ],
     "family": "dalle-discord-bot",
-    "networkMode": "awsvpc",
+    "networkMode": "bridge",
     "taskRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
     "placementConstraints": [],
