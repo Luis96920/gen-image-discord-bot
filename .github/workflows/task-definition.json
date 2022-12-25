@@ -29,11 +29,6 @@
     ],
     "family": "dalle-discord-bot",
     "networkMode": "awsvpc",
-    "networkConfiguration": {
-      "awsvpcConfiguration": {
-	      "subnets": [ "subnet-d717e0aa" ]
-      }
-    },
     "taskRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
     "placementConstraints": [],
