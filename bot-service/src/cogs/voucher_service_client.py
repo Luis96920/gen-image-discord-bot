@@ -20,7 +20,7 @@ def get_voucher(voucher_id):
     wait=wait_exponential(min=1, max=10), 
     stop=(stop_after_attempt(5) | stop_after_delay(30)))
 def get_vouchers(person_id):
-    response = requests.get(f"http://voucher-servce:8080/vouchers?person_id={person_id}")
+    response = requests.get(f"http://voucher-service:8080/vouchers?person_id={person_id}")
     return response.json()
 
 def get_credits(person_id):
