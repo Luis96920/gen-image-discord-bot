@@ -9,6 +9,8 @@ class Credits(commands.Cog):
 
     @commands.hybrid_command(description="Check your remaining credits.")
     async def credits(self, context: commands.Context):
+        await context.defer()
+
         credits = vsc.get_credits(context.author.id)
 
         if credits > 1:
@@ -18,6 +20,14 @@ class Credits(commands.Cog):
         else:
             await context.send(f"You have no credits. Please purchase credits to use DALL-E.")
 
+    @commands.hybrid_command(description="Redeem your credit voucher.")
+    @app_commands.describe(voucher_id="Purchased voucher ID.")
+    async def redeem(self, context: commands.Context, voucher_id: str):
+        person_id = context.author.id
+        vsc.redeem_voucher(voucher_id, person_id)
+        credits = vsc.get_credits(person_id)
+        context.send(f"Successfully redeemed voucher. You have {credits} credits remaining.") 
+            
 async def setup(bot: commands.Bot):
     await bot.add_cog(Credits(bot))
 
