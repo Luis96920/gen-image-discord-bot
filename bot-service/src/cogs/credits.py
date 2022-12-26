@@ -1,5 +1,6 @@
 import sys
 from discord.ext import commands
+from discord import app_commands
 from . import voucher_service_client as vsc
 
 class Credits(commands.Cog):
