@@ -13,7 +13,11 @@ from tenacity import (
     stop=(stop_after_attempt(5) | stop_after_delay(30)))
 def get_voucher(voucher_id):
     response = requests.get(f"http://voucher-service:8080/voucher/{voucher_id}")
-    return response.json()
+
+    if response.status_code == 404:
+        return None
+    else:
+        return response.json()
 
 
 @retry(
@@ -21,7 +25,11 @@ def get_voucher(voucher_id):
     stop=(stop_after_attempt(5) | stop_after_delay(30)))
 def get_vouchers(person_id):
     response = requests.get(f"http://voucher-service:8080/vouchers?person_id={person_id}")
-    return response.json()
+
+    if response.status_code == 404:
+        return None
+    else:
+        return response.json()
 
 def get_credits(person_id):
     vouchers = get_vouchers(person_id)

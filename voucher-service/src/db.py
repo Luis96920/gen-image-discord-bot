@@ -22,6 +22,9 @@ def get_voucher(voucher_id):
             WHERE voucher_id="{voucher_id}"
         """).fetchone()
 
+        if not voucher:
+            return None
+
         return {
             "created": voucher[1],
             "voucher_id": voucher[2],

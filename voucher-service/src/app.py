@@ -9,7 +9,11 @@ app = Flask(__name__)
 @app.get("/vouchers/<voucher_id>")
 def get_voucher(voucher_id):
     voucher = db.get_voucher(voucher_id) 
-    return voucher, 200
+
+    if not voucher:
+        return 404
+    else:
+        return voucher, 200
 
 @app.get("/vouchers")
 def get_vouchers():
