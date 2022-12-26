@@ -10,8 +10,6 @@ class Credits(commands.Cog):
 
     @commands.hybrid_command(description="Check your remaining credits.")
     async def credits(self, context: commands.Context):
-        await context.defer()
-
         credits = vsc.get_credits(context.author.id)
 
         if credits > 1:
