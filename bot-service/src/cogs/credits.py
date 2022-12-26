@@ -27,7 +27,7 @@ class Credits(commands.Cog):
         person_id = context.author.id
         vsc.redeem_voucher(voucher_id, person_id)
         credits = vsc.get_credits(person_id)
-        context.send(f"Successfully redeemed voucher. You have {credits} credits remaining.") 
+        await context.send(f"Successfully redeemed voucher. You have {credits} credits remaining.") 
             
 async def setup(bot: commands.Bot):
     await bot.add_cog(Credits(bot))
