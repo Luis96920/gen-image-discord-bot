@@ -24,11 +24,21 @@ class Credits(commands.Cog):
     @commands.hybrid_command(description="Redeem your credit voucher.")
     @app_commands.describe(voucher_id="Purchased voucher ID.")
     async def redeem(self, context: commands.Context, voucher_id: str):
-        person_id = context.author.id
-        vsc.redeem_voucher(voucher_id, person_id)
-        credits = vsc.get_credits(person_id)
-        await context.send(f"Successfully redeemed voucher. You have {credits} credits remaining.") 
+        voucher = vsc.get_voucher(voucher_id)
+
+        if not voucher:
+            await context.send("Voucher not found. Please confirm that the voucher ID is correct.")
+            return
+
+        credits = voucher["credits"]
+
+        if voucher["redeemed"]:
+            await context.send(f"Voucher already redeemed. You have {credits} credits remaining.")
+        else:
+            vsc.redeem_voucher(voucher_id, context.author.id)
+            await context.send(f"Successfully redeemed voucher. You have {credits} credits remaining.") 
             
+
 async def setup(bot: commands.Bot):
     await bot.add_cog(Credits(bot))
 
