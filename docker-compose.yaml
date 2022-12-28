@@ -10,7 +10,7 @@ services:
     image: sdeastcott/voucher-service
     build: ./voucher-service
     volumes:
-      - sqlite:/app/db
+      - sqlite:/app/sqlite
     ports:
       - 8080:8080
 volumes:
