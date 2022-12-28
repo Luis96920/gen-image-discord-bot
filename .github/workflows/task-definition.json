@@ -1,53 +1,70 @@
 {
-    "containerDefinitions": [
+  "containerDefinitions": [
+    {
+      "name": "dalle-discord-bot",
+      "image": "sdeastcott/dalle-discord-bot",
+      "cpu": 0,
+      "memory": 200,
+      "essential": true,
+      "links": [
+        "voucher-service"
+      ],
+      "portMappings": [
         {
-            "name": "dalle-discord-bot",
-            "image": "sdeastcott/dalle-discord-bot",
-            "cpu": 0,
-            "memory": 200,
-            "essential": true,
-            "links": [
-              "voucher-service"
-            ],
-            "portMappings": [
-              {
-                "hostPort": 8081,
-                "containerPort": 8081,
-                "protocol": "tcp"
-              }
-            ]
-        },
-        {
-            "name": "voucher-service",
-            "image": "sdeastcott/voucher-service",
-            "cpu": 0,
-            "memory": 200,
-            "essential": true,
-            "portMappings": [
-              {
-                "hostPort": 8080,
-                "containerPort": 8080,
-                "protocol": "tcp"
-              }
-            ]
+          "hostPort": 8081,
+          "containerPort": 8081,
+          "protocol": "tcp"
         }
-    ],
-    "family": "dalle-discord-bot",
-    "networkMode": "bridge",
-    "taskRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
-    "executionRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
-    "placementConstraints": [],
-    "requiresCompatibilities": [
-        "EC2"
-    ],
-    "tags": [
+      ]
+    },
+    {
+      "name": "voucher-service",
+      "image": "sdeastcott/voucher-service",
+      "cpu": 0,
+      "memory": 200,
+      "essential": true,
+      "mountPoints": [
         {
-            "key": "ecs:taskDefinition:createdFrom",
-            "value": "ecs-console-v2"
-        },
-        {
-            "key": "ecs:taskDefinition:stackId",
-            "value": "arn:aws:cloudformation:us-east-2:947174266332:stack/ECS-Console-V2-TaskDefinition-7e3e11e3-d9c8-4bb2-bb75-c9f9115e3974/914df930-6e0d-11ed-a5f5-069fcfca9072"
+          "sourceVolume": "sqlite",
+          "containerPath": "/app/sqlite",
+          "readOnly": false
         }
-    ]
+      ],
+      "portMappings": [
+        {
+          "hostPort": 8080,
+          "containerPort": 8080,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ],
+  "family": "dalle-discord-bot",
+  "networkMode": "bridge",
+  "taskRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::947174266332:role/ecsTaskExecutionRole",
+  "placementConstraints": [],
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "tags": [
+    {
+      "key": "ecs:taskDefinition:createdFrom",
+      "value": "ecs-console-v2"
+    },
+    {
+      "key": "ecs:taskDefinition:stackId",
+      "value": "arn:aws:cloudformation:us-east-2:947174266332:stack/ECS-Console-V2-TaskDefinition-7e3e11e3-d9c8-4bb2-bb75-c9f9115e3974/914df930-6e0d-11ed-a5f5-069fcfca9072"
+    }
+  ],
+  "volumes": [
+    {
+      "name": "sqlite",
+      "dockerVolumeConfiguration": {
+        "scope": "shared",
+        "autoprovision": true,
+        "driver": "local"
+      }
+    }
+  ]
 }
