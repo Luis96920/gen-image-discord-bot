@@ -2,7 +2,7 @@ import json
 import sqlite3
 
 def init():
-    connection = sqlite3.connect("/app/sqlite/database.db")
+    connection = sqlite3.connect("/app/db/database.db")
 
     with open("schema.sql") as f:
         connection.executescript(f.read())
@@ -11,7 +11,7 @@ def init():
     connection.close()
 
 def _get_db_connection():
-    connection = sqlite3.connect("/app/sqlite/database.db")
+    connection = sqlite3.connect("/app/db/database.db")
     connection.row_factory = sqlite3.Row
     return connection
 

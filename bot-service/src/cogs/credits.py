@@ -36,6 +36,13 @@ class Credits(commands.Cog):
             vsc.redeem_voucher(voucher_id, context.author.id)
             await context.send(f"Successfully redeemed voucher. You have {credits} credits remaining.") 
             
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    @commands.guild_only()
+    async def create(self, context: commands.Context, credits: str):
+        voucher = vsc.create_voucher(credits)
+        voucher_id = voucher["voucher_id"]
+        await context.send(f"Successfully created voucher: {voucher_id}")
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Credits(bot))

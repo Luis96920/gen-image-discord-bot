@@ -12,7 +12,7 @@ from tenacity import (
     wait=wait_exponential(min=1, max=10), 
     stop=(stop_after_attempt(5) | stop_after_delay(30)))
 def get_voucher(voucher_id):
-    response = requests.get(f"http://voucher-service:8080/voucher/{voucher_id}")
+    response = requests.get(f"http://voucher-service:8080/vouchers/{voucher_id}")
 
     if response.status_code == 404:
         return None
@@ -31,6 +31,7 @@ def get_vouchers(person_id):
     else:
         return response.json()
 
+
 def get_credits(person_id):
     vouchers = get_vouchers(person_id)
 
@@ -39,6 +40,14 @@ def get_credits(person_id):
     else:
         return sum(voucher["credits"] for voucher in vouchers)
 
+
+@retry(
+    wait=wait_exponential(min=1, max=10), 
+    stop=(stop_after_attempt(5) | stop_after_delay(30)))
+def create_voucher(credits):
+    payload = {"credits": int(credits)}
+    response = requests.post(f"http://voucher-service:8080/vouchers", json=payload)
+    return response.json()
 
 @retry(
     wait=wait_exponential(min=1, max=10), 

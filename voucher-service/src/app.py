@@ -59,6 +59,7 @@ def update_voucher(voucher_id):
             return {"error": "Missing required field: credits"}, 400
         else:
             db.subtract_credits(voucher_id, credits)
+            return '', 200
 
     elif request_type == "REDEEM_VOUCHER":
         if not person_id:
