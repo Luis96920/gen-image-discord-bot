@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord import app_commands
 from . import voucher_service_client as vsc
 
+
 class Credits(commands.Cog):
 
     def __init__(self, bot: commands.Bot):
@@ -23,18 +24,20 @@ class Credits(commands.Cog):
     @app_commands.describe(voucher_id="Purchased voucher ID.")
     async def redeem(self, context: commands.Context, voucher_id: str):
         voucher = vsc.get_voucher(voucher_id)
-
+        
         if not voucher:
             await context.send("Voucher not found. Please confirm that the voucher ID is correct.")
             return
 
-        credits = voucher["credits"]
-
         if voucher["redeemed"]:
-            await context.send(f"Voucher already redeemed. You have {credits} credits remaining.")
+            credits = vsc.get_credits(context.author.id)
+            creditsString = "credit" if credits == 1 else "credits"
+            await context.send(f"Voucher already redeemed. You have {credits} {creditsString} remaining.")
         else:
             vsc.redeem_voucher(voucher_id, context.author.id)
-            await context.send(f"Successfully redeemed voucher. You have {credits} credits remaining.") 
+            credits = vsc.get_credits(context.author.id)
+            creditsString = "credit" if credits == 1 else "credits"
+            await context.send(f"Successfully redeemed voucher. You have {credits} {creditsString} remaining.") 
             
     @commands.command(hidden=True)
     @commands.is_owner()
@@ -43,6 +46,7 @@ class Credits(commands.Cog):
         voucher = vsc.create_voucher(credits)
         voucher_id = voucher["voucher_id"]
         await context.send(f"Successfully created voucher: {voucher_id}")
+
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Credits(bot))

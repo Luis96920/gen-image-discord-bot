@@ -7,6 +7,7 @@ from openai.error import InvalidRequestError
 from discord.ext import commands
 from discord import app_commands
 
+
 class Dalle(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot

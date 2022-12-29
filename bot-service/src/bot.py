@@ -2,6 +2,7 @@ import discord
 
 from discord.ext import commands
 
+
 class DalleBot(commands.Bot):
 
     def __init__(self):

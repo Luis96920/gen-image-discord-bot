@@ -5,6 +5,7 @@ import logging
 from discord.ext import commands
 from typing import Literal
 
+
 class Admin(commands.Cog):
 
     def __init__(self, bot: commands.Bot):
@@ -35,6 +36,7 @@ class Admin(commands.Cog):
             logging.info(f"Synced {len(synced)} commands globally")
 
         return
+
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Admin(bot))

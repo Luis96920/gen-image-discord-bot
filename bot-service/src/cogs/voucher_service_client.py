@@ -8,10 +8,11 @@ from tenacity import (
     wait_exponential
 )
 
+
 @retry(
     wait=wait_exponential(min=1, max=10), 
     stop=(stop_after_attempt(5) | stop_after_delay(30)))
-def get_voucher(voucher_id):
+def get_voucher(voucher_id: str):
     response = requests.get(f"http://voucher-service:8080/vouchers/{voucher_id}")
 
     if response.status_code == 404:
@@ -23,7 +24,7 @@ def get_voucher(voucher_id):
 @retry(
     wait=wait_exponential(min=1, max=10), 
     stop=(stop_after_attempt(5) | stop_after_delay(30)))
-def get_vouchers(person_id):
+def get_vouchers(person_id: str):
     response = requests.get(f"http://voucher-service:8080/vouchers?person_id={person_id}")
 
     if response.status_code == 404:
@@ -32,7 +33,7 @@ def get_vouchers(person_id):
         return response.json()
 
 
-def get_credits(person_id):
+def get_credits(person_id: str):
     vouchers = get_vouchers(person_id)
 
     if not vouchers:
@@ -44,15 +45,16 @@ def get_credits(person_id):
 @retry(
     wait=wait_exponential(min=1, max=10), 
     stop=(stop_after_attempt(5) | stop_after_delay(30)))
-def create_voucher(credits):
+def create_voucher(credits: str):
     payload = {"credits": int(credits)}
     response = requests.post(f"http://voucher-service:8080/vouchers", json=payload)
     return response.json()
 
+
 @retry(
     wait=wait_exponential(min=1, max=10), 
     stop=(stop_after_attempt(5) | stop_after_delay(30)))
-def redeem_voucher(voucher_id, person_id):
+def redeem_voucher(voucher_id: str, person_id: str):
     payload = {"request_type": "REDEEM_VOUCHER", "person_id": person_id}
     requests.patch(f"http://voucher-service:8080/vouchers/{voucher_id}", json=payload)
 
@@ -60,7 +62,7 @@ def redeem_voucher(voucher_id, person_id):
 @retry(
     wait=wait_exponential(min=1, max=10), 
     stop=(stop_after_attempt(5) | stop_after_delay(30)))
-def subtract_credits(voucher_id, credits=1):
+def subtract_credits(voucher_id: str, credits=1):
     payload = {"request_type": "SUBTRACT_CREDITS", "credits": credits}
     requests.patch(f"http://voucher-service:8080/vouchers/{voucher_id}", json=payload)
 

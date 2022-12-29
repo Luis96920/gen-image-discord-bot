@@ -1,6 +1,7 @@
 import json
 import sqlite3
 
+
 def init():
     connection = sqlite3.connect("/app/sqlite/database.db")
 
@@ -15,7 +16,7 @@ def _get_db_connection():
     connection.row_factory = sqlite3.Row
     return connection
 
-def get_voucher(voucher_id):
+def get_voucher(voucher_id: str):
     with _get_db_connection() as conn:
         voucher = conn.execute(f"""
             SELECT * FROM voucher
@@ -33,7 +34,7 @@ def get_voucher(voucher_id):
             "redeemed": voucher[5]
         }
 
-def get_vouchers(person_id):
+def get_vouchers(person_id: str):
     with _get_db_connection() as conn: 
         vouchers = conn.execute(f"""
             SELECT * FROM voucher
@@ -53,7 +54,7 @@ def get_vouchers(person_id):
        
         return response
 
-def add_credits(voucher_id, count):
+def add_credits(voucher_id: str, count: int):
     with _get_db_connection() as conn:
         conn.execute(f"""
             UPDATE voucher
@@ -61,7 +62,7 @@ def add_credits(voucher_id, count):
             WHERE voucher_id=="{voucher_id}"
         """)
 
-def subtract_credits(voucher_id, count):
+def subtract_credits(voucher_id: str, count: int):
     with _get_db_connection() as conn:
         conn.execute(f"""
             UPDATE voucher
@@ -69,14 +70,14 @@ def subtract_credits(voucher_id, count):
             WHERE voucher_id=="{voucher_id}"
         """)
 
-def create_voucher(voucher_id, credits):
+def create_voucher(voucher_id: str, credits: int):
     with _get_db_connection() as conn:
         conn.execute(f"""
             INSERT INTO voucher (voucher_id, credits, redeemed)
             VALUES (?, ?, ?)""", (voucher_id, credits, False)
         )
 
-def redeem_voucher(voucher_id, person_id):
+def redeem_voucher(voucher_id: str, person_id: str):
     with _get_db_connection() as conn:
         conn.execute(f"""
             UPDATE voucher

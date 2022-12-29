@@ -4,6 +4,7 @@ import logging
 
 from bot import DalleBot
 
+
 def main():
     logging.getLogger().setLevel(logging.INFO)
     dotenv.load_dotenv()

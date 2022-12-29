@@ -9,7 +9,9 @@ from tenacity import (
     wait_exponential
 )
 
+
 class OpenAIClient:
+
     def __init__(self):
         openai.api_key = os.getenv("OPENAI_API_KEY")
 

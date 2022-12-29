@@ -7,7 +7,7 @@ from waitress import serve
 app = Flask(__name__)
 
 @app.get("/vouchers/<voucher_id>")
-def get_voucher(voucher_id):
+def get_voucher(voucher_id: str):
     voucher = db.get_voucher(voucher_id) 
 
     if not voucher:
@@ -37,7 +37,7 @@ def create_voucher():
     return {"voucher_id": voucher_id}, 201
 
 @app.patch("/vouchers/<voucher_id>")
-def update_voucher(voucher_id):
+def update_voucher(voucher_id: str):
     request_json = request.get_json()
 
     if "request_type" not in request_json:
