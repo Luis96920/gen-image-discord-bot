@@ -3,24 +3,15 @@
     {
       "name": "dalle-discord-bot",
       "image": "sdeastcott/dalle-discord-bot",
-      "cpu": 0,
       "memory": 200,
       "essential": true,
       "links": [
         "voucher-service"
-      ],
-      "portMappings": [
-        {
-          "hostPort": 8081,
-          "containerPort": 8081,
-          "protocol": "tcp"
-        }
       ]
     },
     {
       "name": "voucher-service",
       "image": "sdeastcott/voucher-service",
-      "cpu": 0,
       "memory": 200,
       "essential": true,
       "mountPoints": [
