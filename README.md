@@ -1,6 +1,6 @@
 # DALL-E Discord Bot
 
-The DALL-E Discord Bot is an easy way to generate images from the comfort of your Discord server.
+The DALL-E Discord Bot is an easy way to generate images from within your Discord server.
 
 ![dalle-bot-demo](https://user-images.githubusercontent.com/91042401/204699963-12629229-1851-456a-8adc-2894b9cd10af.gif)
 
@@ -35,20 +35,31 @@ The DALL-E Discord Bot is an easy way to generate images from the comfort of you
 
 10. Add the admin guild ID to the `.env` file. You can find this ID by opening Discord in a browser and checking the URL: `https://discord.com/channels/**<guild_id>**/<channel_id>`
 
-11. Build and run with Docker:
+11. Build bot-service and voucher-service images:
 
       ```bash
-      $ docker build . -t <image>
-      $ docker run <image>
+      $ cd bot-service 
+      $ docker build . -t <name>
+      $ cd ../voucher-service
+      $ docker build . -t <name> 
       ```
 
-12. Add your bot to any Discord guild. Generate an image with the /generate command.
+12. Run the application via docker compose
+
+      ```bash
+      $ docker compose up
+      ```
+
+12. Create and redeem credit vouchers via the create (hidden; ! prefix only) and redeem commands. *(Feel free to tear out the voucher service in your fork. I only created it to play around with Flask, Docker networking, and EBS volumes.)*
+
+13. Add your bot to any Discord guild. Generate an image with the /generate command.
+
 
 ## Dockerless Setup
 
 Follow all of the above, except you can replace step 11 with:
 
-1. Create a new virtual environment:
+1. In bot-service, create a new virtual environment:
 
    ```bash
    $ python3 -m venv venv
@@ -66,3 +77,6 @@ Follow all of the above, except you can replace step 11 with:
    ```bash
    $ python3 main.py
    ```
+
+4. Repeat 1-3 for voucher-service.
+
